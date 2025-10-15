@@ -9,6 +9,8 @@ import mysql.connector
 
 def sql_llm_retrieval(question):
 
+    # ******create .env file to store API Key and MySQL URI string*******
+
     # Define OpenAI API Key
     api_key = ""
 
