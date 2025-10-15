@@ -10,18 +10,17 @@ import mysql.connector
 def sql_llm_retrieval(question):
 
     # Define OpenAI API Key
-    os.environ["OPENAI_API_KEY"] = "sk-proj-vP6NadPf55xo4knPgcTjT3BlbkFJRQFXcJDk3BZf7xP4CYLU"
+    # os.environ["OPENAI_API_KEY"] = "sk-proj-vP6NadPf55xo4knPgcTjT3BlbkFJRQFXcJDk3BZf7xP4CYLU"
 
     # Loading our database in
-    mysql_uri = 'mysql+mysqlconnector://brayant:Drive^YT_24@18.221.113.0:3306/ta_test'
+    # mysql_uri = 'mysql+mysqlconnector://brayant:Drive^YT_24@18.221.113.0:3306/ta_test'
     # 'mysql+mysqlconnector://anthony:12345678@192.168.0.244:3306/ta_decision'
 
-    db = SQLDatabase.from_uri(mysql_uri)
+    # db = SQLDatabase.from_uri(mysql_uri)
+    """def get_schema(_):
+        return db.get_table_info()"""
 
-    def get_schema(_):
-        return db.get_table_info()
-
-    get_schema(None)
+    # get_schema(None)
 
     # Creating prompt to convert user question to SQL query
     template = """Based on the table schema below, write a SQL query that would answer the user's question:
@@ -38,12 +37,12 @@ def sql_llm_retrieval(question):
     # Creating LLM chain for our query
     llm = ChatOpenAI()
 
-    sql_chain = (
+    """sql_chain = (
         RunnablePassthrough.assign(schema=get_schema)
         | prompt
         | llm.bind(stop="\nSQL Result:")
         | StrOutputParser()
-    )
+    )"""
 
     # Creating a template for our full LLM chain
     template = """
@@ -56,11 +55,11 @@ def sql_llm_retrieval(question):
 
     prompt = ChatPromptTemplate.from_template(template)
 
-    def run_query(query):
-        return db.run(query)
+    # def run_query(query):
+    #   return db.run(query)
 
     # Creating full LLM chain for our question and query
-    full_chain = (
+    """full_chain = (
         RunnablePassthrough.assign(query=sql_chain).assign(
             schema=get_schema,
             response=lambda variables: run_query(variables["query"])
@@ -68,9 +67,9 @@ def sql_llm_retrieval(question):
         | prompt
         | llm
         | StrOutputParser()
-    )
+    )"""
 
-    print(full_chain.invoke({"question": question}))
+    # print(full_chain.invoke({"question": question}))
 
 
 if __name__ == '__main__':
