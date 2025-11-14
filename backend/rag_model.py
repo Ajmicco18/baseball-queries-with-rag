@@ -1,10 +1,38 @@
+import getpass
 import os
+from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
+from langchain_mongodb import MongoDBAtlasVectorSearch
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+
 from langchain_community.utilities import SQLDatabase
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-from langchain_openai import ChatOpenAI
 import mysql.connector
+
+load_dotenv()
+
+langsmithTracing = os.getenv('LANGSMITH_TRACING')
+landsmithKey = os.getenv("LANGSMITH_API_KEY")
+openAiKey = os.getenv("OPEN_API_KEY")
+uri = os.getenv('MONGO_DB_URI')
+
+client = MongoClient(uri, server_api=ServerApi('1'))
+model = ChatOpenAI(model="gpt-4.1")
+
+embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
+
+
+vector_store = MongoDBAtlasVectorSearch(
+    embedding=embeddings,
+    collection='',
+    index_name='',
+    relevance_score_fn="cosine",
+)
 
 
 def sql_llm_retrieval(question):
