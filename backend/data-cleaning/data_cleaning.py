@@ -13,8 +13,6 @@ db = client[os.getenv('DATABASE_NAME')]
 
 
 # function to convert csv file to a Json file
-
-
 def convertToJson():
     # defining the path of our directory
     directory_path = '../mlb-dataset/'
@@ -52,8 +50,6 @@ def convertToJson():
 
 
 # function to initialize collections (tables) in MongoDB database
-
-
 def generateCollections():
     directory_path = "../json-data/"
 
@@ -95,5 +91,39 @@ def generateCollections():
         print(f"Directory '{directory_path}' not found or is not a directory.")
 
 
+def generateNameList():
+    names = []
+
+    directory_path = "../json-data/"
+
+    # checking to see if the path exists and if the path is a valid directory
+    if os.path.exists(directory_path) and os.path.isdir(directory_path):
+
+        # iterating through each file in the directory
+        for filename in os.listdir(directory_path):
+
+            # creating a filepath by concatenating the directory path and the file name in the directory
+            filepath = os.path.join(directory_path, filename)
+
+            # checking to make sure the concatenated filepath is an actual file
+            if os.path.isfile(filepath):
+                # try catch to perform csv to json conversion
+                try:
+                    # stripping the .json from the file to generate our name
+                    name = filename.strip('.json')
+
+                    names.append(name)
+
+                except Exception as e:
+                    # returning an exception if there is an error
+                    print(f"Error reading {filename}: {e}")
+        return names
+    else:
+        print(f"Directory '{directory_path}' not found or is not a directory.")
+
+        return []
+
+
 # print(convertToJson())
-print(generateCollections())
+# print(generateCollections())
+print(generateNameList())
