@@ -1,4 +1,3 @@
-from typing import Union
 from ragModel.rag_model import generate_model
 
 from fastapi import FastAPI
