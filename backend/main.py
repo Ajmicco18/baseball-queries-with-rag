@@ -1,4 +1,5 @@
 from typing import Union
+from ragModel.rag_model import generate_model
 
 from fastapi import FastAPI
 
@@ -10,6 +11,7 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.post("/chat")
+def generate_respone(query: str):
+    response = generate_model(query)
+    return {"Response": response}

@@ -3,3 +3,4 @@ mlb-dataset
 json-data
 .env
 documents.md
+__pycache__

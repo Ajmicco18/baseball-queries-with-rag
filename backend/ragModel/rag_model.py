@@ -11,10 +11,10 @@ llm_model = "gpt-4o"
 openai_client = OpenAI()
 
 
-def generate_model():
+def generate_model(query):
 
     # Specify search query, retrieve relevant documents, and convert to string
-    query = "What awards did Jake Arrietta win?"
+    # query = "What awards did Jake Arrietta win?"
     context_docs = get_query_results(query)
     context_string = " ".join([doc["fullName"] for doc in context_docs])
 
@@ -30,7 +30,7 @@ def generate_model():
                    "content": prompt
                    }]
     )
-    print(completion.choices[0].message.content)
+    return completion.choices[0].message.content
 
 
 if __name__ == '__main__':
