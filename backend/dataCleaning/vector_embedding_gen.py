@@ -142,4 +142,4 @@ def concatName():
 # print(generate_search_index())
 
 # Test the function with a sample query
-pprint.pprint(get_query_results("Bird"))
+# pprint.pprint(get_query_results("Bird"))
