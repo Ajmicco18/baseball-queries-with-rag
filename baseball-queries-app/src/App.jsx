@@ -4,12 +4,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-//Figure out how to get API URL in .env
 const BASE_URL = import.meta.env.VITE_API_URL
 
 function App() {
 
   const [query, setQuery] = useState("")
+  const [resp, setResp] = useState("")
   const [isResponse, setIsResponse] = useState(false)
 
   const handleSubmit = async () => {
@@ -17,7 +17,8 @@ function App() {
       const response = await axios.post(`${BASE_URL}/chat`, {
         query: query
       })
-      console.log(response.data)
+      console.log(response.data[0])
+      setResp(response.data[0])
       setIsResponse(true)
     }
     catch (error) {
@@ -27,24 +28,34 @@ function App() {
     setQuery("")
   }
 
-  const checkURL = () => {
-    console.log(BASE_URL)
+  const handleReset = () => {
+    setResp("")
+    setIsResponse(false)
   }
 
   return (
     <>
       <h1 style={{ textAlign: "center", color: "#D50032" }}>Baseball Queries Website</h1>
       <Box display={"flex"} margin={"auto"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"} width={"80%"}>
-        <TextField
-          value={query}
-          onChange={event => setQuery(event.target.value)}
-          color='white' >
-
-        </TextField>
-        <Button onClick={handleSubmit} sx={{ mt: "5px", backgroundColor: "white", color: "#D50032", "&:hover": { backgroundColor: "#D50032", color: "white" } }}>Query</Button>
-        <Button onClick={checkURL} sx={{ mt: "5px", backgroundColor: "white", color: "#D50032", "&:hover": { backgroundColor: "#D50032", color: "white" } }}>Check</Button>
-      </Box>
-
+        {isResponse ? (
+          <>
+            <TextField
+              disabled
+              value={resp}
+              sx={{ color: "black", backgroundColor: "white" }}
+            />
+            <Button onClick={handleReset} sx={{ mt: "5px", backgroundColor: "white", color: "#D50032", "&:hover": { backgroundColor: "#D50032", color: "white" } }}>Reset</Button>
+          </>
+        ) : (
+          <>
+            <TextField
+              value={query}
+              onChange={event => setQuery(event.target.value)}
+              sx={{ color: "black", backgroundColor: "white" }} />
+            <Button onClick={handleSubmit} sx={{ mt: "5px", backgroundColor: "white", color: "#D50032", "&:hover": { backgroundColor: "#D50032", color: "white" } }}>Query</Button>
+          </>
+        )}
+      </Box >
     </>
   )
 }
