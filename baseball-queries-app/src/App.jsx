@@ -17,15 +17,14 @@ function App() {
       const response = await axios.post(`${BASE_URL}/chat`, {
         query: query
       })
-      console.log(response.data[0])
-      setResp(response.data[0])
+      console.log(response.data.Response)
+      setResp(response.data.Response)
+      setQuery("")
       setIsResponse(true)
     }
     catch (error) {
       console.error("Error: ", error)
     }
-
-    setQuery("")
   }
 
   const handleReset = () => {
@@ -42,7 +41,8 @@ function App() {
             <TextField
               disabled
               value={resp}
-              sx={{ color: "black", backgroundColor: "white" }}
+              fullWidth
+              sx={{ color: "black", backgroundColor: "white", borderRadius: "5px" }}
             />
             <Button onClick={handleReset} sx={{ mt: "5px", backgroundColor: "white", color: "#D50032", "&:hover": { backgroundColor: "#D50032", color: "white" } }}>Reset</Button>
           </>
@@ -51,7 +51,9 @@ function App() {
             <TextField
               value={query}
               onChange={event => setQuery(event.target.value)}
-              sx={{ color: "black", backgroundColor: "white" }} />
+              fullWidth
+              placeholder='Enter a baseball related question!'
+              sx={{ color: "black", backgroundColor: "white", borderRadius: "5px" }} />
             <Button onClick={handleSubmit} sx={{ mt: "5px", backgroundColor: "white", color: "#D50032", "&:hover": { backgroundColor: "#D50032", color: "white" } }}>Query</Button>
           </>
         )}
