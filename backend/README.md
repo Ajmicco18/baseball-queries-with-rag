@@ -6,7 +6,7 @@ by Anthony Micco
 
 **Prerequisites**
 
-To run this project, you will need to create accounts in or install the following:
+To run this project, you will need to create accounts or install the following:
 
 -   [Python 3.11+](https://www.python.org/downloads/)
 -   [MongoDB Account](https://www.mongodb.com/)
