@@ -45,7 +45,7 @@ multidict==6.7.0
 mypy_extensions==1.1.0
 mysql-connector-python==9.4.0
 numpy==2.3.4
-openai==2.3.0
+openai==2.8.1
 orjson==3.11.3
 packaging==25.0
 pandas==2.3.3

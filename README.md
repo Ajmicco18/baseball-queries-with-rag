@@ -3,7 +3,7 @@
 by Anthony Micco
 
 ## Project Layout
-- [Backend](https://github.com/Ajmicco18/Sports-Memorbilia-Store/blob/main/sports-store-api/README.md): Used a FastAPI backend with Python, MongoDB, and OpenAI API's to implement the backend.
+- [Backend](https://github.com/Ajmicco18/baseball-queries-with-rag/blob/main/backend/README.md): Used a FastAPI backend with Python, MongoDB, and OpenAI API's to implement the backend.
 - [Baseball-Queries-App](https://github.com/Ajmicco18/baseball-queries-with-rag/blob/main/baseball-queries-app/README.md): Used a React Vite framework to develop the frontend. 
 
 ## Baseball Queries With RAG Backend
