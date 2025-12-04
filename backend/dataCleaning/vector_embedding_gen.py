@@ -93,7 +93,10 @@ def generate_search_index():
 def get_query_results(query):
     """Gets results from a vector search query."""
 
+    # getting our embedding from the get_embedding function using our search query
     query_embedding = get_embedding(query)
+
+    # generating our vector search pipeline using mongodb's query language
     pipeline = [
         {
             "$vectorSearch": {
@@ -111,8 +114,10 @@ def get_query_results(query):
         }
     ]
 
+    # getting the results of the search using our collection
     results = collection.aggregate(pipeline)
 
+    # iterating through results to display the answers provided by the vector search
     array_of_results = []
     for doc in results:
         array_of_results.append(doc)
