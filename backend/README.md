@@ -39,9 +39,28 @@ Finally, to run the API, you enter the following command:
 ```
 ---
 
-### MongoDB Database
+### Connecting to MongoDB Database
 
-To create the database, you must go to [MongoDB](https://www.mongodb.com/) and generate a database using the following [instructions](https://www.mongodb.com/docs/). When the database is created you can connect to it using Python by adding your MongoDB database uri to the .env.example file and using the format found in the data_cleaning.py file. The data_cleaning.py file has three functions that populate the database with data from a Kaggle baseball dataset [found here](https://www.kaggle.com/datasets/open-source-sports/baseball-databank/data). 
+To connect to the MongoDB database, clone the repository and change the directory
+
+```sh
+git clone https://github.com/Ajmicco18/baseball-queries-with-rag.git
+cd backend
+```
+
+1. Copy `.env.example` to `.env`:
+
+    ```shell
+    cp .env.example .env
+    ```
+
+2. Retrieve OpenAI API Key:
+
+   Go to [https://platform.openai.com/api-keys] (https://platform.openai.com/api-keys) to create an account and generate a key.
+
+3. Copy OpenAI API Key to .env:
+
+With these steps complete, you can connect to the database as well as utilize the OpenAI API to run the large language model. 
 
 
 ### Viewing the Interactive API Docs
