@@ -56,7 +56,7 @@ cd backend
 
 2. Retrieve OpenAI API Key:
 
-   Go to [https://platform.openai.com/api-keys] (https://platform.openai.com/api-keys) to create an account and generate a key.
+   Go to [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys) to create an account and generate a key.
 
 3. Copy OpenAI API Key to .env:
 
